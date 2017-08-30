@@ -1,6 +1,17 @@
-<center><h1>ITEMS ON SALE:</h1>
+<center>
+<h1>ITEMS ON SALE:</h1>
 <br><br>
-<img src= "<%= @products[0].image %>">
+
+<% @products.each do |product| %>
+
+  <img src="<%= product.image %>">
+  <br><h3><%= product.name %></h3>
+  <p>$ <%= product.price %></p>
+  <button type="button" class="btn btn-primary">BUY</button><br><br>
+
+<% end %>
+
+<!-- <img src= "<%= @products[0].image %>">
 <br><h3><%= @products[0].name %></h3>
 <br><p>$ <%= @products[0].price %></p>
 <button type="button" class="btn btn-primary">BUY</button>
@@ -13,5 +24,6 @@
 <img src= "<%= @products[2].image %>">
 <br><h3><%= @products[2].name %></h3>
 <br><p>$ <%= @products[2].price %></p>
-<button type="button" class="btn btn-primary">BUY</button>
+<button type="button" class="btn btn-primary">BUY</button> -->
+
 </center>
