@@ -19,4 +19,9 @@ class ProductsController < ApplicationController
     render "create.html.erb"
   end
 
+  def show
+    @product = Product.find_by(id: params[:id])
+    render "show.html.erb"
+  end
+
 end
