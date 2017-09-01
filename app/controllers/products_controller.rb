@@ -1,22 +1,22 @@
 class ProductsController < ApplicationController
   
-  def all_method
+  def index
     @products = Product.all
-    render "all_products.html.erb"
+    render "index.html.erb"
   end
 
-  def form
-    render "form.html.erb"
+  def new
+    render "new.html.erb"
   end
 
-  def form_results
+  def create
     @new_product = Product.new(
       name: params[:name],
       price: params[:price],
       image: params[:image],
       description: params[:description])
     @new_product.save
-    render "form_results.html.erb"
+    render "create.html.erb"
   end
 
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get "/all_products" => "products#all_method"
+  get "/products" => "products#index"
 
-  get "/form" => "products#form"
-  post "/form_results" => "products#form_results"
+  get "/products/new" => "products#new"
+  post "/products" => "products#create"
 end
