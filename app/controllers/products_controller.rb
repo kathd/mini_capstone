@@ -24,4 +24,20 @@ class ProductsController < ApplicationController
     render "show.html.erb"
   end
 
+  def edit
+    @product = Product.find_by(id: params[:id])
+    render "edit.html.erb"
+  end
+
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.update(
+      id: params[:id],
+      name: params[:name],
+      price: params[:price],
+      image: params[:image],
+      description: params[:description])
+    render "update.html.erb"
+  end
+
 end
