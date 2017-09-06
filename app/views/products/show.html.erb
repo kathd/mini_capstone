@@ -6,6 +6,11 @@ Price: <p><%= @product.price %></p>
 Description: <p><%= @product.description %></p>
 
 <button class="btn btn-outline-secondary"><a href="/products/<%= @product.id %>/edit">Edit Product</a></button>
-<button class="btn btn-outline-primary"><a href="/products/">Back to All Products</a></button>
 
+<%= form_tag "/products/#{@product.id}", method: :delete do %>
+<input type="submit" class="btn btn-outline-danger" value="Delete Product">
+<% end %>
+
+<br><br>
+<button class="btn btn-outline-primary"><a href="/products/">Back to All Products</a></button>
 </center>
