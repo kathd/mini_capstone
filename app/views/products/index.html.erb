@@ -1,16 +1,20 @@
-<center>
 <h1>ALL PRODUCTS:</h1>
-<br><br>
+<br>
 
 <% @products.each do |product| %>
-
-<div><a href="/products/<%= product.id %>">
-  <img src="<%= product.image %>">
-  <br><h3><%= product.name %></h3></a>
+<div class="row">
+  <div class="col-3">
+    <div class="card" style="width: 20rem;">
+      <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title"><%= product.name %></h4>
+        <p class="card-text">$ <%= product.price %></p>
+        <a href="/products/<%= product.id %>" class="btn btn-primary">Select Product</a>
+      </div>
+    </div>
+    <!-- <button type="button" class="btn btn-primary">BUY</button><br><br> -->
+  </div>
 </div>
 
-  <p>$ <%= product.price %></p>
-  <button type="button" class="btn btn-primary">BUY</button><br><br>
-
 <% end %>
-</center>
+
