@@ -1,9 +1,18 @@
 <center>
 <h1><%= @product.name %></h1>
 
-<img src="<%= @product.image %>"><br>
-Price: <p><%= @product.price %></p>
+<% @product.images.each do |image| %>
+  <img src="<%= image.url %>"><br><br>
+<% end %>
+
+
+Price: <%= number_to_currency(@product.price) %>
+<h4 class="<%= @product.sale_message_class_name %>"><%= @product.sale_message %></h4>
 Description: <p><%= @product.description %></p>
+Supplied By: <p><%= @product.supplier.name %></p>
+<p>Tax: <%= number_to_currency(@product.tax) %></p>
+<p>Total: <%= number_to_currency(@product.total) %></p>
+
 
 <a class="btn btn-outline-secondary" href="/products/<%= @product.id %>/edit">Edit Product</a>
 
