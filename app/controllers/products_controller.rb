@@ -18,26 +18,26 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(
+    supplier_id = params[:supplier]['supplier_id']
+
+    @product = Product.create(
       name: params[:name],
       price: params[:price],
-      image: params[:image],
-      description: params[:description])
-    @product.save
+      description: params[:description],
+      supplier_id: supplier_id
+      )
     flash[:success] = "New Product Added"
     redirect_to "/products/#{@product.id}"
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
-
     if params[:id] = "random"
       products = Product.all
       @products = products.sample
     else
       @product = Product.findy_by(id: params[:id])
     end
-    
+
     render "show.html.erb"
   end
 
@@ -64,5 +64,12 @@ class ProductsController < ApplicationController
     flash[:danger] = "Product Deleted"
     redirect_to "/products"
   end
+
+  def search
+    search_term = params[:search]
+    @products = Product.where("name LIKE ?", "%#{search_term}")
+    render "index.html.erb"
+  end
+
 
 end
