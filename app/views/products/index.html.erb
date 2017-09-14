@@ -11,7 +11,7 @@ Sort Price: <a href="/products?sort=price&sort_order=asc">Low</a> <a href="/prod
   <div class="row">
   <div class="col-sm-4">
     <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="<%= product.image %>" alt="Card image cap">
+      <img class="card-img-top" src="<%= product.images.first.url %>" alt="Card image cap">
       <div class="card-body">
         <h4 class="card-title"><%= product.name %></h4>
         <p class="card-text">$ <%= product.price %></p>
