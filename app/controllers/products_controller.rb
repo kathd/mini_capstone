@@ -18,13 +18,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    supplier_id = params[:supplier]['supplier_id']
+    # supplier_id = params[:supplier]['supplier_id']
 
     @product = Product.create(
       name: params[:name],
       price: params[:price],
-      description: params[:description],
-      supplier_id: supplier_id
+      description: params[:description]
+      # supplier_id: supplier_id
       )
     flash[:success] = "New Product Added"
     redirect_to "/products/#{@product.id}"
