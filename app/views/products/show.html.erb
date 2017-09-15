@@ -1,8 +1,10 @@
 <center>
+<br><br>
 <h1><%= @product.name %></h1>
 
 <% @product.images.each do |image| %>
-  <img src="<%= image.url %>"><br><br>
+  <img src="<%= image.url %>" alt="<%= @product.name%>" class="img-responsive">
+  <br><br>
 <% end %>
 
 

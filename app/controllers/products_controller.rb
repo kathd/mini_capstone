@@ -31,13 +31,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    if params[:id] = "random"
+    if params[:id] == "random"
       products = Product.all
-      @products = products.sample
+      @product = products.sample
     else
-      @product = Product.findy_by(id: params[:id])
+      @product = Product.find_by(id: params[:id])
     end
-
     render "show.html.erb"
   end
 
@@ -52,8 +51,8 @@ class ProductsController < ApplicationController
       id: params[:id],
       name: params[:name],
       price: params[:price],
-      image: params[:image],
-      description: params[:description])
+      description: params[:description],
+      in_stock: params[:in_stock])
     flash[:success] = "Product Updated"
     redirect_to "/products/#{product.id}"
   end

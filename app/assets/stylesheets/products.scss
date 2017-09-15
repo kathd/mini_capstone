@@ -6,7 +6,21 @@
 
 body {
   font-family: Futura, Sans Serif;
-  background-image: url('memphis-colorful.png')
+  // background-image: url('memphis-colorful.png');
+
+}
+
+nav {
+  background-color: red;
+
+}
+
+nav a {
+  color: white;
+}
+
+nav a:hover {
+  color: black;
 
 }
 

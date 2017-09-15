@@ -1,20 +1,16 @@
-<h1>ALL PRODUCTS:</h1>
 <br>
-<!-- <h4><a href="/products/random">Random Product</a></h4>
 <br>
-<p>
-Sort Price: <a href="/products?sort=price&sort_order=asc">Low</a> <a href="/products?desc=price&sort_order=desc">High</a>
-</p> -->
-<a href="/products/new" class="btn btn-outline-primary">Add Product</a>
+<p><a href="/products/random">Random Product</a></p>
+<p>Sort Price: <a href="/products?sort=price&sort_order=asc">Low</a> <a href="/products?desc=price&sort_order=desc">High</a></p>
 <br>
-
+<br>
 <div class="container">
   <div class="row">
     <% @products.each do |product| %>
 
-      <div class="col-sm-4">
-        <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src="#" alt="Card image cap">
+      <div class="col-sm-4 col-sm-offset-2">
+        <div class="card" style="width: 15rem;">
+        <img class="card-img-top" src="<%= product.images.first.url %>" alt="Card image cap">
         <div class="card-body">
           <h4 class="card-title"><%= product.name %></h4>
           <p class="card-text">$ <%= product.price %></p>
