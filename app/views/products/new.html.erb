@@ -1,23 +1,36 @@
+<br><br>
 <h1>ADD A NEW PRODUCT:</h1>
 
 <%= form_tag "/products", method: :post do %>
 
   <div>
-    Name: <input type="text" name="name">
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
   </div>
 
   <div>
-    Price: <input type="text" name="price">
+    <%= label_tag :price %>
+    <%= text_field_tag :price %>
+  </div>
+
+<!--   <div>
+    <%= label_tag :image %>
+    <%= text_field_tag :url %>
+  </div> -->
+
+  <div>
+    <%= label_tag :description %>
+    <%= text_field_tag :description %>
   </div>
 
   <div>
-    Description: <input type="text" name="description">
+    <%= label_tag :supplier_id %>
+    <%= number_field_tag :supplier_id %>
   </div>
 
-  <div>
-    Supplier ID <input type="text" name="supplier_id">
-  </div>
+   <div>
+    <%= submit_tag "Save Product" %>
 
-  <input type="submit" value="Save Product">
+  </div>
 
 <% end %>

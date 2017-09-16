@@ -18,13 +18,14 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # supplier_id = params[:supplier]['supplier_id']
+    supplier_id = params[:supplier_id]
 
     @product = Product.create(
       name: params[:name],
       price: params[:price],
-      description: params[:description]
-      # supplier_id: supplier_id
+      description: params[:description],
+      image: params[:image],
+      supplier_id: supplier_id
       )
     flash[:success] = "New Product Added"
     redirect_to "/products/#{@product.id}"
@@ -42,6 +43,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find_by(id: params[:id])
+    @image = Image.find_by(product_id: params[:product_id])
     render "edit.html.erb"
   end
 
