@@ -1,9 +1,16 @@
-<h1>Order # <%= @oder.id %></h1>
-
-User ID: <%= @order.user_id %>
-
-Product ID: <%= @order_product_id%>
-Quantity: <%= @order.quantity %>
-Subtotal: <%= @order.subtotal %>
-Tax: <%= @order.tax %>
-Total: <%= @order.total %>
+<br>
+<h1>Order # <%= @order.id %></h1>
+<br><br>
+<p>User ID: <%= @order.user_id %></p>
+<p>Email: <%= @order.user.email %></p>
+<br><br>
+<p>Product Name: <%= @order.product.name %></p>
+<p>Product ID: <%= @order.product_id%></p>
+Product Image: <img src="<%= @order.product.images.first.url %>">
+<br><br>
+<p>Purchased at: <%= @order.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
+<br><br>
+<p>Quantity: <%= @order.quantity %></p>
+<p>Subtotal: <%= @order.subtotal %></p>
+<p>Tax: <%= @order.tax %></p>
+<p>Total: <%= @order.total %></p>

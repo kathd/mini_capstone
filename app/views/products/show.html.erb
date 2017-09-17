@@ -1,4 +1,3 @@
-<center>
 <br><br>
 <h1><%= @product.name %></h1>
 
@@ -15,6 +14,28 @@ Supplied By: <p><%= @product.supplier.name %></p>
 <p>Tax: <%= number_to_currency(@product.tax) %></p>
 <p>Total: <%= number_to_currency(@product.total) %></p>
 
+<br><br>
+<h3>ORDER THIS PRODUCT:</h3>
+
+<%= form_tag "/orders", method: :post do %>
+
+  <div>
+    <%= label_tag :product_id %>
+    <%= hidden_field_tag :product_id, @product.id %>
+  </div>
+
+  <div>
+    <%= label_tag :quantity %>
+    <%= number_field_tag :quantity %>
+  </div>
+
+  <div>
+    <%= submit_tag "Create Order" %>
+  </div>  
+
+<% end %>
+<br><br>
+
 
 <a class="btn btn-outline-secondary" href="/products/<%= @product.id %>/edit">Edit Product</a>
 
@@ -24,4 +45,3 @@ Supplied By: <p><%= @product.supplier.name %></p>
 
 <br><br>
 <a class="btn btn-outline-primary" href="/products/">Back to All Products</a>
-</center>
