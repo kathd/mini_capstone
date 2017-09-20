@@ -1,20 +1,28 @@
 class OrdersController < ApplicationController
 
-  def new
-    render :new
-  end
-
   def create
-    carted_products
-    product_id = params[:product_id]
-    order = Order.new(
-      user_id: current_user.id
+    @carted_products = current_user.carted_products.where(status: "carted")
+
+    subtotal = 0
+    @carted_products.each do |carted_product|
+      subtotal += carted_product.product.price * carted_product.quantity
+    end
+
+    tax = subtotal * 0.09
+    total = subtotal + tax
+
+    order = Order.create(
+      user_id: current_user.id,
+      subtotal: subtotal,
+      tax: tax,
+      total: total
+    )
+    
+    @carted_products.update(
+      status: "purchased",
+      order_id: order.id
       )
-    product = Product.find(product_id)
-    order.subtotal = product.price * order.quantity
-    order.tax = order.subtotal * 0.09
-    order.total = order.subtotal + order.tax
-    order.save
+
     redirect_to "/orders/#{order.id}"
   end
 

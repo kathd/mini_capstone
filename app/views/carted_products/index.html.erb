@@ -1,9 +1,10 @@
 <br><br>
 <h1>Your Cart:</h1>
 <br>
-<% @carted_products.each do |product|%>
-  <h4><%= product.product.name %></h4>
-  <p>Quantity: <%= product.quantity %> </p>
+<% @carted_products.each do |carted_product|%>
+  <h4><%= carted_product.product.name %></h4>
+  <p>Quantity: <%= carted_product.quantity %> </p>
+  <%= link_to "Remove", "/cart/#{carted_product.id}", method: :delete %>
 <% end %>
 <br>
 <%= form_tag "/orders", method: :post do %>

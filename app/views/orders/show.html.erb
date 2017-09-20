@@ -1,16 +1,18 @@
-<br>
-<h1>Order # <%= @order.id %></h1>
 <br><br>
-<p>User ID: <%= @order.user_id %></p>
-<p>Email: <%= @order.user.email %></p>
-<br><br>
-<p>Product Name: <%= @order.product.name %></p>
-<p>Product ID: <%= @order.product_id%></p>
-Product Image: <img src="<%= @order.product.images.first.url %>">
-<br><br>
+<h1>YOUR ORDER</h1>
+
+<p>Order #: <%= @order.id %></p>
+<p>Purchased By: <%= @order.user.email %></p>
 <p>Purchased at: <%= @order.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
-<br><br>
-<p>Quantity: <%= @order.quantity %></p>
-<p>Subtotal: <%= @order.subtotal %></p>
-<p>Tax: <%= @order.tax %></p>
-<p>Total: <%= @order.total %></p>
+
+<p>Subtotal: <%= number_to_currency(@order.subtotal) %></p>
+<p>Tax: <%= number_to_currency(@order.tax) %></p>
+<p>Total: <%= number_to_currency(@order.total) %></p>
+
+<% @order.carted_products.each do |carted_product| %>
+  <h4>Product: <%= carted_product.product.name %></h4>
+  <p>Quantity: <% %></p>
+  <img src="">
+  <br><br>
+<% end %>
+
