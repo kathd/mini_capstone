@@ -2,10 +2,9 @@
 <h1><%= @product.name %></h1>
 
 <% @product.images.each do |image| %>
-  <img src="<%= image.url %>" alt="<%= @product.name%>" class="img-responsive">
-  <br><br>
+  <img src="<%= image.url %>" alt="<%= @product.name%>" class="img-thumbnail">
 <% end %>
-
+<br><br>
 
 Price: <%= number_to_currency(@product.price) %>
 <h4 class="<%= @product.sale_message_class_name %>"><%= @product.sale_message %></h4>
@@ -15,9 +14,8 @@ Supplied By: <p><%= @product.supplier.name %></p>
 <p>Total: <%= number_to_currency(@product.total) %></p>
 
 <br><br>
-<h3>ORDER THIS PRODUCT:</h3>
 
-<%= form_tag "/orders", method: :post do %>
+<%= form_tag "/cart", method: :post do %>
 
   <div>
     <%= label_tag :product_id %>
@@ -27,11 +25,11 @@ Supplied By: <p><%= @product.supplier.name %></p>
   <div>
     <%= label_tag :quantity %>
     <%= number_field_tag :quantity %>
-  </div>
+  </div> 
 
   <div>
-    <%= submit_tag "Create Order" %>
-  </div>  
+    <input type="submit" class="btn btn-primary" value="Add To Cart">
+  </div> 
 
 <% end %>
 <br><br>

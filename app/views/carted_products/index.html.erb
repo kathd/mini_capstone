@@ -1,0 +1,11 @@
+<br><br>
+<h1>Your Cart:</h1>
+<br>
+<% @carted_products.each do |product|%>
+  <h4><%= product.product.name %></h4>
+  <p>Quantity: <%= product.quantity %> </p>
+<% end %>
+<br>
+<%= form_tag "/orders", method: :post do %>
+<input type="submit" class="btn btn-primary" value="Buy Now!">
+<% end %>
