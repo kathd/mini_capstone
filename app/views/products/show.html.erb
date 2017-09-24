@@ -15,31 +15,39 @@ Supplied By: <p><%= @product.supplier.name %></p>
 
 <br><br>
 
-<h4>Add Product To Cart: </h4>
-<%= form_tag "/cart", method: :post do %>
+<% if current_user %>
 
-  <div>
-    <%= label_tag :product_id %>
-    <%= hidden_field_tag :product_id, @product.id %>
-  </div>
+  <h4>Add Product To Cart: </h4>
+  <%= form_tag "/cart", method: :post do %>
 
-  <div>
-    <%= label_tag :quantity %>
-    <%= number_field_tag :quantity %>
-  </div> 
+    <div>
+      <%= label_tag :product_id %>
+      <%= hidden_field_tag :product_id, @product.id %>
+    </div>
 
-  <div>
-    <input type="submit" class="btn btn-primary" value="Add To Cart">
-  </div> 
+    <div>
+      <%= label_tag :quantity %>
+      <%= number_field_tag :quantity %>
+    </div> 
+
+    <div>
+      <input type="submit" class="btn btn-primary" value="Add To Cart">
+    </div> 
+
+  <% end %>
+  <br><br>
 
 <% end %>
-<br><br>
 
 
-<a class="btn btn-outline-secondary" href="/products/<%= @product.id %>/edit">Edit Product</a>
+<% if current_user && current_user.admin %>
 
-<%= form_tag "/products/#{@product.id}", method: :delete do %>
-<input type="submit" class="btn btn-outline-danger" value="Delete Product">
+  <a class="btn btn-outline-secondary" href="/products/<%= @product.id %>/edit">Edit Product</a>
+
+  <%= form_tag "/products/#{@product.id}", method: :delete do %>
+  <input type="submit" class="btn btn-outline-danger" value="Delete Product">
+  <% end %>
+
 <% end %>
 
 <br><br>

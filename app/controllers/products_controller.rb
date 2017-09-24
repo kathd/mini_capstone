@@ -14,20 +14,28 @@ class ProductsController < ApplicationController
   end
 
   def new
-    render "new.html.erb"
+    if current_user.admin
+      render "new.html.erb"
+    else
+      flash[:warning] = "YOU ARE NOT AUTHORIZED"
+      redirect_to "/products"
+    end
   end
 
   def create
     supplier_id = params[:supplier_id]
-
-    @product = Product.create(
-      name: params[:name],
-      price: params[:price],
-      description: params[:description],
-      image: params[:image],
-      supplier_id: supplier_id
-      )
-    flash[:success] = "New Product Added"
+    if current_user.admin
+      @product = Product.create(
+        name: params[:name],
+        price: params[:price],
+        description: params[:description],
+        image: params[:image],
+        supplier_id: supplier_id
+        )
+      flash[:success] = "New Product Added"
+    else
+      flash[:warning] = "YOU ARE NOT AUTHORIZED"
+    end
     redirect_to "/products/#{@product.id}"
   end
 
@@ -42,28 +50,41 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find_by(id: params[:id])
-    @image = Image.find_by(product_id: params[:product_id])
-    render "edit.html.erb"
+    if current_user.admin
+      @product = Product.find_by(id: params[:id])
+      @image = Image.find_by(product_id: params[:product_id])
+      render "edit.html.erb"
+    else
+      flash[:warning] = "YOU ARE NOT AUTHORIZED"
+      redirect_to "/products/#{@product.id}"
+    end
   end
 
   def update
-    product = Product.find_by(id: params[:id])
-    product.update(
-      id: params[:id],
-      name: params[:name],
-      price: params[:price],
-      description: params[:description],
-      in_stock: params[:in_stock])
-    flash[:success] = "Product Updated"
+    if current_user.admin
+      product = Product.find_by(id: params[:id])
+      product.update(
+        id: params[:id],
+        name: params[:name],
+        price: params[:price],
+        description: params[:description],
+        in_stock: params[:in_stock])
+      flash[:success] = "Product Updated"
+    else
+      flash[:warning] = "YOU ARE NOT AUTHORIZED"
+    end
     redirect_to "/products/#{product.id}"
   end
 
   def destroy
-    @product = Product.find_by(id: params[:id])
-    @product.destroy
-    flash[:danger] = "Product Deleted"
-    redirect_to "/products"
+    if current_user.admin
+      @product = Product.find_by(id: params[:id])
+      @product.destroy
+      flash[:danger] = "Product Deleted"
+    else
+      flash[:warning] = "YOU ARE NOT AUTHORIZED"
+    end
+    redirect_to "/products/#{product.id}"
   end
 
   def search

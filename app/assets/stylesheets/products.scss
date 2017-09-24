@@ -16,12 +16,12 @@ nav {
 
 }
 
-nav a {
+#navbarSupportedContent a {
   color: white;
 }
 
-nav a:hover {
-  color: black;
+#navbarSupportedContent .dropdown-menu a {
+  color: red;
 
 }
 
